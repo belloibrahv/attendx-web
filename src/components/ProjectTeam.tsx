@@ -100,7 +100,7 @@ const cardVariants = {
 
 export function ProjectTeam() {
   return (
-    <section className="team-section" style={{ padding: '4rem 0', background: 'var(--cream)' }}>
+    <section className="team-section" id="team" style={{ padding: '4rem 0', background: 'var(--cream)' }}>
       <div className="team-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
         <motion.div
           className="section-header"

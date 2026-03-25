@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { EnhancedHero } from '../components/EnhancedHero';
 import { LeadershipSlider } from '../components/LeadershipSlider';
 import { ProjectTeam } from '../components/ProjectTeam';
@@ -17,22 +19,130 @@ const fadeInUp = {
 };
 
 export function Landing() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
   return (
     <div className="page">
       <motion.nav 
-        className="navbar"
+        className="navbar enhanced-navbar"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="nav-logo">AttendX</div>
-        <div className="nav-links">
-          <a href="#research">Research</a>
-          <a href="#team">Team</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#download">Download</a>
-          <Link to="/admin">Admin</Link>
+        <motion.div 
+          className="nav-logo"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400 }}
+        >
+          <span className="logo-text">AttendX</span>
+          <span className="logo-subtitle">TASUED</span>
+        </motion.div>
+        
+        {/* Desktop Navigation */}
+        <div className="nav-links desktop-nav">
+          <motion.a 
+            href="#research"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Research
+          </motion.a>
+          <motion.a 
+            href="#team"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Team
+          </motion.a>
+          <motion.a 
+            href="#leadership"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Leadership
+          </motion.a>
+          <motion.a 
+            href="#download"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Download
+          </motion.a>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link to="/admin" className="nav-admin-btn">
+              Admin Portal
+            </Link>
+          </motion.div>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <motion.button
+          className="mobile-menu-toggle"
+          onClick={toggleMobileMenu}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </motion.button>
+
+        {/* Mobile Navigation */}
+        <motion.div 
+          className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}
+          initial={false}
+          animate={{ 
+            height: isMobileMenuOpen ? 'auto' : 0,
+            opacity: isMobileMenuOpen ? 1 : 0
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="mobile-nav-content">
+            <motion.a 
+              href="#research"
+              onClick={closeMobileMenu}
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Research
+            </motion.a>
+            <motion.a 
+              href="#team"
+              onClick={closeMobileMenu}
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Team
+            </motion.a>
+            <motion.a 
+              href="#leadership"
+              onClick={closeMobileMenu}
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Leadership
+            </motion.a>
+            <motion.a 
+              href="#download"
+              onClick={closeMobileMenu}
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Download
+            </motion.a>
+            <Link to="/admin" className="nav-admin-btn mobile" onClick={closeMobileMenu}>
+              Admin Portal
+            </Link>
+          </div>
+        </motion.div>
       </motion.nav>
 
       <EnhancedHero />

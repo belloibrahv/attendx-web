@@ -708,10 +708,35 @@ button {
 }
 
 @media (max-width: 720px) {
-  .navbar {
+  .navbar, .enhanced-navbar {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding: 1rem 2rem;
+    position: relative;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+  }
+  
+  .mobile-nav {
+    display: block;
+  }
+  
+  .logo-text {
+    font-size: 1.3rem;
+  }
+  
+  .logo-subtitle {
+    font-size: 0.65rem;
   }
 
   .hero {
@@ -1923,10 +1948,54 @@ button {
   font-size: 0.875rem;
 }
 
-/* Navigation Updates */
+/* Enhanced Navigation Styles */
+.enhanced-navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--tasued-primary);
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--tasued-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .nav-links a {
   position: relative;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -1936,11 +2005,11 @@ button {
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--tasued-primary);
+  background: linear-gradient(90deg, var(--tasued-primary), var(--tasued-accent));
   transition: width 0.3s ease;
 }
 
@@ -1948,14 +2017,87 @@ button {
   width: 100%;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+.nav-admin-btn {
+  background: linear-gradient(135deg, var(--tasued-primary), var(--tasued-accent));
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-/* Section Spacing */
-.section {
-  scroll-margin-top: 80px;
+.nav-admin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.4);
+  color: white !important;
+}
+
+.nav-admin-btn::after {
+  display: none;
+}
+
+.nav-admin-btn.mobile {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Mobile Menu */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--tasued-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: rgba(30, 58, 95, 0.1);
+}
+
+.mobile-nav {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(30, 58, 95, 0.1);
+}
+
+.mobile-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.05);
+  transition: all 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  color: var(--tasued-primary);
+  padding-left: 1rem;
+}
+
+/* Smooth Scrolling Enhancement */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Section Spacing for Navigation */
+.section, .research-overview, .team-section, .leadership-section {
+  scroll-margin-top: 100px;
 }
 
 /* Loading States */

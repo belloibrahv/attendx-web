@@ -98,7 +98,7 @@ export function LeadershipSlider() {
   };
 
   return (
-    <section className="leadership-section">
+    <section className="leadership-section" id="leadership">
       <div className="leadership-container">
         <motion.div
           className="section-header"

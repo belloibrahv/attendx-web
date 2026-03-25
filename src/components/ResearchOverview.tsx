@@ -130,7 +130,7 @@ export function ResearchOverview() {
   const [activePoint, setActivePoint] = useState(0);
 
   return (
-    <section className="research-overview">
+    <section className="research-overview" id="research">
       <div className="research-container">
         <motion.div
           className="research-header"
