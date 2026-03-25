@@ -50,7 +50,6 @@ function buildTimeSeries(attendance: any[]) {
 export function Admin() {
   const [identifier, setIdentifier] = useState('TASUED-LEC-204');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
   const [token, setToken] = useState('');
   const [sessions, setSessions] = useState<any[]>([]);
   const [activeSession, setActiveSession] = useState<any | null>(null);
@@ -69,7 +68,6 @@ export function Admin() {
     from: '',
     to: '',
   });
-  const [mode, setMode] = useState<'login' | 'register'>('login');
 
   const [form, setForm] = useState({
     courseCode: 'EDU 401',
@@ -180,25 +178,6 @@ export function Admin() {
     }
   };
 
-  const handleRegister = async () => {
-    try {
-      setError('');
-      setLoading(true);
-      if (!identifier || !password) {
-        setError('Enter staff ID and password.');
-        setLoading(false);
-        return;
-      }
-      const data = await api.register({ role: 'lecturer', identifier, password, name });
-      setAuthToken(data.token);
-      setToken(data.token);
-    } catch (err: any) {
-      setError(err.message || 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleStartSession = async () => {
     try {
       setError('');
@@ -300,25 +279,12 @@ export function Admin() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              {mode === 'login' ? 'Welcome Back' : 'Create Account'}
+              Welcome Back
             </motion.h3>
             <p className="notice">
-              {mode === 'login'
-                ? 'Sign in to manage attendance sessions.'
-                : 'Register to start managing attendance.'}
+              Sign in to manage attendance sessions.
             </p>
             <div className="form-grid" style={{ marginTop: 20 }}>
-              {mode === 'register' ? (
-                <motion.input
-                  className="input"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder="Full Name"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                />
-              ) : null}
               <motion.input
                 className="input"
                 value={identifier}
@@ -349,19 +315,12 @@ export function Admin() {
               ) : null}
               <motion.button
                 className="button primary"
-                onClick={mode === 'login' ? handleLogin : handleRegister}
+                onClick={handleLogin}
                 disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
-              </motion.button>
-              <motion.button
-                className="button ghost"
-                onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
-                whileHover={{ scale: 1.02 }}
-              >
-                {mode === 'login' ? "Don't have an account?" : 'Already have an account?'}
+                {loading ? 'Please wait...' : 'Sign In'}
               </motion.button>
             </div>
           </motion.div>
