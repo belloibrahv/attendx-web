@@ -156,28 +156,32 @@ const cardVariants = {
 
 export function KeyFeatures() {
   return (
-    <section style={{ 
-      padding: '5rem 0', 
-      background: 'linear-gradient(135deg, var(--sky) 0%, var(--mint) 100%)' 
-    }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+    <section 
+      className="key-features-section"
+      style={{ 
+        padding: '5rem 0', 
+        background: 'linear-gradient(135deg, var(--sky) 0%, var(--mint) 100%)' 
+      }}
+    >
+      <div className="features-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="features-header"
           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 style={{ 
-            fontSize: '2.5rem', 
+          <h2 className="features-title" style={{ 
+            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', 
             fontWeight: '700', 
             color: 'var(--tasued-primary)',
             marginBottom: '1rem'
           }}>
             Key Features
           </h2>
-          <p style={{ 
-            fontSize: '1.1rem', 
+          <p className="features-subtitle" style={{ 
+            fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', 
             color: 'var(--ink-muted)', 
             maxWidth: '600px', 
             margin: '0 auto',
@@ -189,12 +193,13 @@ export function KeyFeatures() {
 
         {/* Feature Categories */}
         {Object.entries(categories).map(([categoryKey, category]) => (
-          <div key={categoryKey} style={{ marginBottom: '3rem' }}>
+          <div key={categoryKey} className="feature-category" style={{ marginBottom: '3rem' }}>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="category-header"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -208,8 +213,8 @@ export function KeyFeatures() {
                 background: category.color,
                 borderRadius: '2px'
               }} />
-              <h3 style={{
-                fontSize: '1.5rem',
+              <h3 className="category-title" style={{
+                fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
                 fontWeight: '600',
                 color: 'var(--ink)',
                 margin: 0
@@ -223,9 +228,10 @@ export function KeyFeatures() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              className="features-grid"
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                 gap: '1.5rem'
               }}
             >
@@ -241,6 +247,7 @@ export function KeyFeatures() {
                       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
                     }}
                     transition={{ type: "spring", stiffness: 300 }}
+                    className="feature-card"
                     style={{
                       background: 'white',
                       borderRadius: '16px',
@@ -260,13 +267,13 @@ export function KeyFeatures() {
                       background: `linear-gradient(90deg, ${feature.color}, ${feature.color}80)`
                     }} />
                     
-                    <div style={{
+                    <div className="feature-content" style={{
                       display: 'flex',
                       alignItems: 'flex-start',
                       gap: '1rem',
                       marginBottom: '1rem'
                     }}>
-                      <div style={{
+                      <div className="feature-icon" style={{
                         padding: '0.75rem',
                         borderRadius: '12px',
                         background: `${feature.color}15`,
@@ -282,8 +289,8 @@ export function KeyFeatures() {
                       </div>
                       
                       <div style={{ flex: 1 }}>
-                        <h4 style={{
-                          fontSize: '1.2rem',
+                        <h4 className="feature-title" style={{
+                          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                           fontWeight: '600',
                           color: 'var(--ink)',
                           marginBottom: '0.5rem',
@@ -292,8 +299,8 @@ export function KeyFeatures() {
                           {feature.title}
                         </h4>
                         
-                        <p style={{
-                          fontSize: '0.9rem',
+                        <p className="feature-description" style={{
+                          fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                           color: 'var(--ink-muted)',
                           lineHeight: '1.5',
                           margin: 0
@@ -314,17 +321,18 @@ export function KeyFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
+          className="feature-highlights"
           style={{
             background: 'white',
             borderRadius: '20px',
-            padding: '3rem 2rem',
+            padding: 'clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
             textAlign: 'center',
             marginTop: '3rem'
           }}
         >
-          <h3 style={{
-            fontSize: '1.8rem',
+          <h3 className="highlights-title" style={{
+            fontSize: 'clamp(1.4rem, 3.5vw, 1.8rem)',
             fontWeight: '700',
             color: 'var(--tasued-primary)',
             marginBottom: '2rem'
@@ -332,22 +340,22 @@ export function KeyFeatures() {
             Why Choose AttendX?
           </h3>
           
-          <div style={{
+          <div className="highlights-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
             gap: '2rem'
           }}>
-            <div>
-              <div style={{
-                fontSize: '2.5rem',
+            <div className="highlight-item">
+              <div className="highlight-value" style={{
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                 fontWeight: '700',
                 color: 'var(--tasued-success)',
                 marginBottom: '0.5rem'
               }}>
                 95%
               </div>
-              <div style={{
-                fontSize: '0.9rem',
+              <div className="highlight-label" style={{
+                fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                 color: 'var(--ink-muted)',
                 fontWeight: '500'
               }}>
@@ -355,17 +363,17 @@ export function KeyFeatures() {
               </div>
             </div>
             
-            <div>
-              <div style={{
-                fontSize: '2.5rem',
+            <div className="highlight-item">
+              <div className="highlight-value" style={{
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                 fontWeight: '700',
                 color: 'var(--tasued-accent)',
                 marginBottom: '0.5rem'
               }}>
                 2min
               </div>
-              <div style={{
-                fontSize: '0.9rem',
+              <div className="highlight-label" style={{
+                fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                 color: 'var(--ink-muted)',
                 fontWeight: '500'
               }}>
@@ -373,17 +381,17 @@ export function KeyFeatures() {
               </div>
             </div>
             
-            <div>
-              <div style={{
-                fontSize: '2.5rem',
+            <div className="highlight-item">
+              <div className="highlight-value" style={{
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                 fontWeight: '700',
                 color: 'var(--tasued-primary)',
                 marginBottom: '0.5rem'
               }}>
                 500+
               </div>
-              <div style={{
-                fontSize: '0.9rem',
+              <div className="highlight-label" style={{
+                fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                 color: 'var(--ink-muted)',
                 fontWeight: '500'
               }}>
@@ -391,17 +399,17 @@ export function KeyFeatures() {
               </div>
             </div>
             
-            <div>
-              <div style={{
-                fontSize: '2.5rem',
+            <div className="highlight-item">
+              <div className="highlight-value" style={{
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                 fontWeight: '700',
                 color: 'var(--coral)',
                 marginBottom: '0.5rem'
               }}>
               99.9%
               </div>
-              <div style={{
-                fontSize: '0.9rem',
+              <div className="highlight-label" style={{
+                fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                 color: 'var(--ink-muted)',
                 fontWeight: '500'
               }}>
