@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { EnhancedHero } from '../components/EnhancedHero';
 import { LeadershipSlider } from '../components/LeadershipSlider';
@@ -23,11 +23,25 @@ export function Landing() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Prevent body scroll when menu is open
+    if (!isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    document.body.classList.remove('mobile-menu-open');
   };
+
+  // Clean up body class on unmount
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, []);
   return (
     <div className="page">
       <motion.nav 
