@@ -61,6 +61,22 @@ export function ApiDebug() {
       <p><strong>Hostname:</strong> {window.location.hostname}</p>
       <p><strong>Environment:</strong> {import.meta.env.MODE}</p>
       
+      {window.location.hostname === 'localhost' && (
+        <div style={{ 
+          background: '#fff3cd', 
+          border: '1px solid #ffeaa7', 
+          padding: '10px', 
+          borderRadius: '4px',
+          marginBottom: '10px'
+        }}>
+          <strong>⚠️ Running Locally:</strong> If you get CORS errors, try accessing{' '}
+          <a href="https://attendx-web.vercel.app/admin" target="_blank" rel="noopener noreferrer">
+            https://attendx-web.vercel.app/admin
+          </a>{' '}
+          instead.
+        </div>
+      )}
+      
       <div style={{ marginTop: '10px' }}>
         <button onClick={testApi} disabled={loading} style={{ marginRight: '10px' }}>
           Test Health

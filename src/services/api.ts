@@ -37,32 +37,47 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   console.log('API_URL:', API_URL);
   console.log('Current hostname:', typeof window !== 'undefined' ? window.location.hostname : 'server');
   
-  const response = await fetch(fullUrl, {
-    ...options,
-    headers,
-  });
+  try {
+    const response = await fetch(fullUrl, {
+      ...options,
+      headers,
+    });
 
-  const text = await response.text();
-  console.log('Response status:', response.status);
-  console.log('Response text:', text.substring(0, 200));
-  
-  let data = null;
-  if (text) {
-    try {
-      data = JSON.parse(text);
-    } catch (error) {
-      console.error('JSON parse error:', error);
-      console.error('Response text that failed to parse:', text);
-      throw new Error(`JSON.parse: unexpected character at line 1 column 1 of the JSON data`);
+    const text = await response.text();
+    console.log('Response status:', response.status);
+    console.log('Response text:', text.substring(0, 200));
+    
+    let data = null;
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch (error) {
+        console.error('JSON parse error:', error);
+        console.error('Response text that failed to parse:', text);
+        throw new Error(`JSON.parse: unexpected character at line 1 column 1 of the JSON data`);
+      }
     }
-  }
 
-  if (!response.ok) {
-    const message = data?.error || 'Request failed';
-    throw new Error(message);
-  }
+    if (!response.ok) {
+      const message = data?.error || 'Request failed';
+      throw new Error(message);
+    }
 
-  return data as T;
+    return data as T;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    
+    // Handle CORS errors specifically
+    if (error.message.includes('CORS') || error.message.includes('NetworkError') || error.message.includes('fetch')) {
+      throw new Error(`Network Error: Unable to connect to API server. ${
+        window.location.hostname === 'localhost' 
+          ? 'Try accessing https://attendx-web.vercel.app/admin instead of localhost.'
+          : 'Please check your internet connection.'
+      }`);
+    }
+    
+    throw error;
+  }
 }
 
 async function requestBlob(path: string, options: RequestInit = {}): Promise<Blob> {
