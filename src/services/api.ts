@@ -1,19 +1,22 @@
 const fallbackUrl = 'https://attendx-apis.onrender.com';
 const proxyUrl = '/api';
 
-// Force proxy usage on Vercel domains
+// Force proxy usage on Vercel domains - more comprehensive detection
 const isVercel = typeof window !== 'undefined' && 
   (window.location.hostname.includes('vercel.app') || 
    window.location.hostname.includes('vercel.com') ||
-   window.location.hostname === 'attendx-web.vercel.app');
+   window.location.hostname === 'attendx-web.vercel.app' ||
+   window.location.hostname.endsWith('.vercel.app'));
 
-export const API_URL = import.meta.env.VITE_API_URL || (isVercel ? proxyUrl : fallbackUrl);
+// Always use proxy on Vercel, fallback to environment variable or direct URL
+export const API_URL = isVercel ? proxyUrl : (import.meta.env.VITE_API_URL || fallbackUrl);
 
 console.log('API Configuration:', {
   isVercel,
   hostname: typeof window !== 'undefined' ? window.location.hostname : 'server',
   API_URL,
-  env: import.meta.env.VITE_API_URL
+  env: import.meta.env.VITE_API_URL,
+  forced: isVercel ? 'Using proxy' : 'Using direct API'
 });
 
 let authToken: string | null = null;

@@ -15,5 +15,10 @@
       "source": "/api/(.*)",
       "destination": "https://attendx-apis.onrender.com/$1"
     }
-  ]
+  ],
+  "functions": {
+    "app/api/**/*.js": {
+      "maxDuration": 30
+    }
+  }
 }
