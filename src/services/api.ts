@@ -1,6 +1,11 @@
 const fallbackUrl = 'https://attendx-apis.onrender.com';
+const proxyUrl = '/api';
 
-export const API_URL = import.meta.env.VITE_API_URL || fallbackUrl;
+export const API_URL = import.meta.env.VITE_API_URL || (
+  typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') 
+    ? proxyUrl 
+    : fallbackUrl
+);
 
 let authToken: string | null = null;
 
