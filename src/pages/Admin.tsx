@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { api, setAuthToken } from '../services/api';
 import { QRCodeSVG } from 'qrcode.react';
+import { ApiDebug } from '../components/ApiDebug';
 
 const BUCKET_MS = 10 * 60 * 1000;
 
@@ -243,6 +244,7 @@ export function Admin() {
 
   return (
     <div className="page">
+      <ApiDebug />
       <motion.nav 
         className="navbar"
         initial={{ y: -20, opacity: 0 }}
