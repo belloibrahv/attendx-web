@@ -1,8 +1,10 @@
 const fallbackUrl = 'https://attendx-apis.onrender.com';
 const proxyUrl = '/api';
 
+// Use proxy when on Vercel, direct API otherwise
 export const API_URL = import.meta.env.VITE_API_URL || (
-  typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') 
+  typeof window !== 'undefined' && 
+  (window.location.hostname.includes('vercel.app') || window.location.hostname.includes('vercel.com'))
     ? proxyUrl 
     : fallbackUrl
 );
@@ -23,14 +25,18 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     headers.Authorization = `Bearer ${authToken}`;
   }
 
-  console.log('Making request to:', `${API_URL}${path}`);
+  const fullUrl = `${API_URL}${path}`;
+  console.log('Making request to:', fullUrl);
+  console.log('API_URL:', API_URL);
+  console.log('Current hostname:', typeof window !== 'undefined' ? window.location.hostname : 'server');
   
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(fullUrl, {
     ...options,
     headers,
   });
 
   const text = await response.text();
+  console.log('Response status:', response.status);
   console.log('Response text:', text.substring(0, 200));
   
   let data = null;
