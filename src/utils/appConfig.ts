@@ -2,12 +2,12 @@
 export const APP_CONFIG = {
   // APK Download Configuration
   APK: {
-    DOWNLOAD_URL: 'https://expo.dev/artifacts/eas/a9ZCTFSLG3EbhWJ5yUFUG8.apk',
+    DOWNLOAD_URL: 'https://expo.dev/artifacts/eas/mq4BBNVDTdTgovAUruAFot.aab',
     VERSION: '1.0.0',
-    BUILD_ID: '4a23b7b3-5bdc-409a-9e0e-633687d34bbf',
-    FILE_SIZE: '~15MB',
+    BUILD_ID: 'mq4BBNVDTdTgovAUruAFot',
+    FILE_SIZE: '~18MB',
     MIN_ANDROID_VERSION: '7.0+',
-    LAST_UPDATED: '2025-03-25'
+    LAST_UPDATED: '2026-03-26'
   },
   
   // App Information
