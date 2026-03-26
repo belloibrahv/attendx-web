@@ -1,4 +1,4 @@
-const fallbackUrl = 'http://localhost:4000';
+const fallbackUrl = 'https://attendx-apis.onrender.com';
 
 export const API_URL = import.meta.env.VITE_API_URL || fallbackUrl;
 
@@ -18,13 +18,26 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     headers.Authorization = `Bearer ${authToken}`;
   }
 
+  console.log('Making request to:', `${API_URL}${path}`);
+  
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers,
   });
 
   const text = await response.text();
-  const data = text ? JSON.parse(text) : null;
+  console.log('Response text:', text.substring(0, 200));
+  
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch (error) {
+      console.error('JSON parse error:', error);
+      console.error('Response text that failed to parse:', text);
+      throw new Error(`JSON.parse: unexpected character at line 1 column 1 of the JSON data`);
+    }
+  }
 
   if (!response.ok) {
     const message = data?.error || 'Request failed';
