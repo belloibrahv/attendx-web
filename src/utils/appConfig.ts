@@ -2,12 +2,22 @@
 export const APP_CONFIG = {
   // APK Download Configuration
   APK: {
-    DOWNLOAD_URL: 'https://expo.dev/artifacts/eas/3j9p3ixpfTYcbSn4qDBrZ3.apk',
-    VERSION: '1.0.0',
-    BUILD_ID: '12bad714-c456-4115-9ea4-9338bf9a3478',
-    FILE_SIZE: '~20MB',
+    DOWNLOAD_URL: 'https://expo.dev/artifacts/eas/rkNwKpTFifL66RmXt9UUuc.apk',
+    VERSION: '2.0.0',
+    BUILD_ID: 'cd3845fa-57f5-49bd-ad98-4e20934c22f3',
+    FILE_SIZE: '~25MB',
     MIN_ANDROID_VERSION: '7.0+',
-    LAST_UPDATED: '2026-03-26'
+    LAST_UPDATED: '2026-03-26',
+    FEATURES: [
+      'Modern Dashboard UI',
+      'Enhanced User Experience', 
+      'Real-time Status Indicators',
+      'Improved Performance',
+      'Enterprise-grade Design',
+      'Gradient Backgrounds',
+      'Micro-interactions',
+      'Data Visualization'
+    ]
   },
   
   // App Information

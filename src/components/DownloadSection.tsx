@@ -171,9 +171,57 @@ export function DownloadSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        style={{
+          marginTop: '2rem',
+          padding: '1.5rem',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          borderRadius: '12px',
+          textAlign: 'center',
+          color: 'white'
+        }}
+      >
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          gap: '0.5rem', 
+          marginBottom: '1rem' 
+        }}>
+          <RefreshCw size={20} color="white" />
+          <h4 style={{ margin: 0, color: 'white' }}>🎉 New in Version 2.0.0 - Modern UI Update!</h4>
+        </div>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '1rem', 
+          fontSize: '0.875rem',
+          marginTop: '1rem'
+        }}>
+          {APP_CONFIG.APK.FEATURES.map((feature, index) => (
+            <div key={index} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.5rem',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              padding: '0.75rem',
+              borderRadius: '8px'
+            }}>
+              <CheckCircle size={16} color="white" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="download-notes"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.4, duration: 0.6 }}
         style={{
-          marginTop: '3rem',
+          marginTop: '1.5rem',
           padding: '1.5rem',
           backgroundColor: 'var(--surface-secondary)',
           borderRadius: '12px',
