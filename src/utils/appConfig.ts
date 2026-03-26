@@ -2,7 +2,7 @@
 export const APP_CONFIG = {
   // APK Download Configuration
   APK: {
-    DOWNLOAD_URL: 'https://expo.dev/accounts/belloibrahv/projects/attendx/builds/12bad714-c456-4115-9ea4-9338bf9a3478',
+    DOWNLOAD_URL: 'https://expo.dev/artifacts/eas/3j9p3ixpfTYcbSn4qDBrZ3.apk',
     VERSION: '1.0.0',
     BUILD_ID: '12bad714-c456-4115-9ea4-9338bf9a3478',
     FILE_SIZE: '~20MB',
