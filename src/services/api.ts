@@ -21,6 +21,10 @@ console.log('API Configuration:', {
 
 let authToken: string | null = null;
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
+}
+
 export function setAuthToken(token: string | null) {
   authToken = token;
 }
@@ -69,9 +73,10 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     return data as T;
   } catch (error) {
     console.error('Fetch error:', error);
+    const errorMessage = getErrorMessage(error);
     
     // Handle CORS errors specifically
-    if (error.message.includes('CORS') || error.message.includes('NetworkError') || error.message.includes('fetch')) {
+    if (errorMessage.includes('CORS') || errorMessage.includes('NetworkError') || errorMessage.includes('fetch')) {
       throw new Error(`Network Error: Unable to connect to API server. ${
         window.location.hostname === 'localhost' 
           ? 'Try accessing https://attendx-web.vercel.app/admin instead of localhost.'
@@ -79,7 +84,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
       }`);
     }
     
-    throw error;
+    throw error instanceof Error ? error : new Error(errorMessage);
   }
 }
 

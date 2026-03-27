@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { API_URL } from '../services/api';
+
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
+}
 
 export function ApiDebug() {
   const [testResult, setTestResult] = useState<string>('');
@@ -13,7 +17,7 @@ export function ApiDebug() {
       const data = await response.json();
       setTestResult(`✅ Success: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
-      setTestResult(`❌ Error: ${error.message}`);
+      setTestResult(`❌ Error: ${getErrorMessage(error)}`);
     } finally {
       setLoading(false);
     }
@@ -37,7 +41,7 @@ export function ApiDebug() {
       const data = await response.json();
       setTestResult(`✅ Login Success: User ${data.user?.name || 'Unknown'}`);
     } catch (error) {
-      setTestResult(`❌ Login Error: ${error.message}`);
+      setTestResult(`❌ Login Error: ${getErrorMessage(error)}`);
     } finally {
       setLoading(false);
     }
